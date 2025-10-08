@@ -2,168 +2,82 @@
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Stitch Design</title>
-<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<title>Cyber Lab Access</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
-<style>
-      .glow {
-        box-shadow: 0 0 5px theme("colors.primary"), 0 0 10px theme("colors.primary / 50%"), 0 0 20px theme("colors.primary / 30%");
-      }
-    </style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 <script>
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
             colors: {
-              primary: "#ff00ff",
+              primary: "#f906f9",
               "background-light": "#f8f5f8",
               "background-dark": "#230f23",
             },
             fontFamily: {
-              display: ["Space Grotesk", "sans-serif"],
+              display: ["Space Grotesk"],
             },
-            borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
           },
         },
       };
     </script>
+<style>
+      body {
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .glow-border {
+        position: relative;
+      }
+      .glow-border::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: conic-gradient(from 180deg at 50% 50%, #f906f9, #9c27b0, #f906f9);
+        filter: blur(20px);
+        z-index: -1;
+        border-radius: 0.75rem;
+      }
+    </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-white">
-<div class="flex min-h-screen">
-<aside class="w-64 shrink-0 bg-background-light dark:bg-background-dark/50 p-6 flex flex-col justify-between">
+<div class="flex min-h-screen items-center justify-center p-4">
+<div class="relative w-full max-w-md">
+<div class="glow-border">
+<div class="relative z-10 rounded-xl bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm p-8 shadow-2xl border border-primary/20">
+<div class="text-center">
+<h1 class="text-3xl font-bold text-black dark:text-white">Cyber Lab Access</h1>
+<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Securely login to your account</p>
+</div>
+<form class="mt-8 space-y-6">
 <div>
-<div class="mb-8">
-<h1 class="text-2xl font-bold text-primary">CyberGuard</h1>
-<p class="text-sm text-white/70">v1.0</p>
-</div>
-<nav class="flex flex-col gap-2">
-<a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 text-white/80 hover:text-white transition-colors" href="#">
-<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.48.11-.11a16,16,0,0,1,21.53,0,1.14,1.14,0,0,0,.11.11l80,75.48A16,16,0,0,1,224,115.55Z"></path>
-</svg>
-<span class="font-medium">Dashboard</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 text-white/80 hover:text-white transition-colors" href="#">
-<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
-</svg>
-<span class="font-medium">Analysis</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 text-white/80 hover:text-white transition-colors" href="#">
-<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Z"></path>
-</svg>
-<span class="font-medium">Reports</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary/20 text-primary glow" href="#">
-<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"></path>
-</svg>
-<span class="font-medium">Settings</span>
-</a>
-</nav>
-</div>
-</aside>
-<main class="flex-1 overflow-y-auto">
-<header class="flex items-center justify-between p-6 border-b border-primary/20">
-<div class="flex items-center gap-4">
-<button class="p-2 rounded-full hover:bg-primary/20 text-white/80 hover:text-white transition-colors lg:hidden">
-<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,88H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path>
-</svg>
-</button>
-<h2 class="text-2xl font-bold text-white">CyberGuard</h2>
-</div>
-<div class="flex items-center gap-4">
-<button class="p-2 rounded-full hover:bg-primary/20 text-white/80 hover:text-white transition-colors">
-<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
-</svg>
-</button>
-<button class="p-2 rounded-full hover:bg-primary/20 text-white/80 hover:text-white transition-colors">
-<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
-</svg>
-</button>
-<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-primary glow" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBTW_hmdxHB0UgGHGOjUsz0sDcAppkDpUM1TwPmpJidGbhF092VrxaK9VU-ZnSRCjRos6aD9ZSpkDh61Q1wJTE2c10I1szuN7Uk5J0q7VoIKxZROoifpWGZusNCE_H3tXPpl9B27RS_W4VLYFlOWbVJ84ADO_kwt4bzIlEm1FWDyM9fMWnVXOfBFn_UDQer28FhKkOo67ttWJAYkkQ8DAmzFqIM1zHfpjodJ5pqpaemR51nApvOOEpZPt102Zs4JnhZpXMaXIBIsb9v");'></div>
-</div>
-</header>
-<div class="p-8">
-<div class="mb-8">
-<h2 class="text-4xl font-bold text-white">Settings</h2>
-<p class="text-white/70">Manage your account and preferences</p>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-<div class="lg:col-span-1">
-<div class="bg-primary/10 dark:bg-background-dark/50 p-6 rounded-xl border border-primary/30">
-<h3 class="text-2xl font-bold text-white mb-6">User Profile</h3>
-<div class="flex flex-col items-center gap-4 mb-6">
-<div class="relative">
-<div class="w-32 h-32 rounded-full bg-cover bg-center border-4 border-primary glow" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBTW_hmdxHB0UgGHGOjUsz0sDcAppkDpUM1TwPmpJidGbhF092VrxaK9VU-ZnSRCjRos6aD9ZSpkDh61Q1wJTE2c10I1szuN7Uk5J0q7VoIKxZROoifpWGZusNCE_H3tXPpl9B27RS_W4VLYFlOWbVJ84ADO_kwt4bzIlEm1FWDyM9fMWnVXOfBFn_UDQer28FhKkOo67ttWJAYkkQ8DAmzFqIM1zHfpjodJ5pqpaemR51nApvOOEpZPt102Zs4JnhZpXMaXIBIsb9v");'></div>
-<button class="absolute bottom-0 right-0 p-2 rounded-full bg-primary text-white hover:bg-primary/80 glow">
-<svg fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M228,88.23a8,8,0,0,0-6.14,1.45L188,123.54V48a8,8,0,0,0-8-8H40a8,8,0,0,0-8,8V176a8,8,0,0,0,8,8H131.54l-33.87,33.87a8,8,0,0,0,5.08,13.56,8.12,8.12,0,0,0,6.13-2.45L144,188,179.87,223.9a8.12,8.12,0,0,0,6.13,2.45,8,8,0,0,0,5.08-13.56L157.21,180H220a8,8,0,0,0,8-8V88A8,8,0,0,0,228,88.23Zm-12,83.9H152.46a8,8,0,0,0-5.66,2.34L128,193.35,109.21,174.56a8,8,0,0,0-5.66-2.34H48V56H172V128.46a8,8,0,0,0,2.34,5.66L200,159.21l16-16.21Z"></path></svg>
-</button>
-</div>
-<h4 class="text-xl font-bold text-white">Alex Volkov</h4>
-<p class="text-white/70">alex.volkov@cyberguard.io</p>
-</div>
-<button class="w-full bg-primary/20 text-primary font-medium py-2 px-4 rounded-lg hover:bg-primary/30 transition-colors border border-primary glow">Upload New Picture</button>
-</div>
-</div>
-<div class="lg:col-span-2">
-<div class="bg-primary/10 dark:bg-background-dark/50 p-6 rounded-xl border border-primary/30">
-<h3 class="text-2xl font-bold text-white mb-6">Personal Information</h3>
-<form class="space-y-6">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div>
-<label class="block text-sm font-medium text-white/80 mb-2" for="name">Name</label>
-<input class="w-full bg-background-dark/30 border border-primary/30 rounded-lg px-4 py-2 text-white focus:ring-primary focus:border-primary glow-on-focus" id="name" type="text" value="Alex Volkov"/>
+<label class="sr-only" for="email">Email</label>
+<input autocomplete="email" class="w-full rounded-lg border-primary/30 bg-background-light/50 dark:bg-background-dark/50 p-4 placeholder-gray-500 dark:placeholder-gray-400 text-black dark:text-white focus:border-primary focus:ring-primary" id="email" name="email" placeholder="Email" required="" type="email"/>
 </div>
 <div>
-<label class="block text-sm font-medium text-white/80 mb-2" for="email">Email Address</label>
-<input class="w-full bg-background-dark/30 border border-primary/30 rounded-lg px-4 py-2 text-white focus:ring-primary focus:border-primary glow-on-focus" id="email" type="email" value="alex.volkov@cyberguard.io"/>
-</div>
+<label class="sr-only" for="password">Password</label>
+<input autocomplete="current-password" class="w-full rounded-lg border-primary/30 bg-background-light/50 dark:bg-background-dark/50 p-4 placeholder-gray-500 dark:placeholder-gray-400 text-black dark:text-white focus:border-primary focus:ring-primary" id="password" name="password" placeholder="Password" required="" type="password"/>
 </div>
 <div>
-<label class="block text-sm font-medium text-white/80 mb-2" for="password">Password</label>
-<input class="w-full bg-background-dark/30 border border-primary/30 rounded-lg px-4 py-2 text-white focus:ring-primary focus:border-primary glow-on-focus" id="password" placeholder="Enter new password" type="password"/>
-</div>
-<div class="flex justify-end">
-<button class="bg-primary text-white font-bold py-2 px-6 rounded-lg hover:bg-primary/80 transition-colors glow" type="submit">Save Changes</button>
+<button class="w-full rounded-lg bg-primary py-3 px-4 font-bold text-white shadow-md transition-all duration-300 hover:bg-primary/90 hover:shadow-primary/50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="submit">
+                  Login
+                </button>
 </div>
 </form>
 </div>
-<div class="bg-primary/10 dark:bg-background-dark/50 p-6 rounded-xl border border-primary/30 mt-8">
-<h3 class="text-2xl font-bold text-white mb-6">Security Settings</h3>
-<div class="space-y-6">
-<div class="flex items-center justify-between">
-<div>
-<h4 class="font-medium text-white">Two-Factor Authentication (2FA)</h4>
-<p class="text-sm text-white/70">Enhance your account security.</p>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only peer" type="checkbox"/>
-<div class="w-11 h-6 bg-gray-600 rounded-full peer peer-focus:ring-4 peer-focus:ring-primary/50 dark:peer-focus:ring-primary peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
-</label>
-</div>
-<div class="border-t border-primary/20"></div>
-<div class="flex items-center justify-between">
-<div>
-<h4 class="font-medium text-white">Session History</h4>
-<p class="text-sm text-white/70">View recent login activity.</p>
-</div>
-<button class="bg-primary/20 text-primary font-medium py-2 px-4 rounded-lg hover:bg-primary/30 transition-colors border border-primary glow">View Activity</button>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</main>
 </div>
 
 </body></html>

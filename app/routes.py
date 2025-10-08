@@ -9,9 +9,7 @@ def landing():
 def login():
     return render_template('Login.html')
 
-@app.route('/signup')
-def signup():
-    return render_template('signUp.html')
+# Signup GET/POST handled by server.signUp blueprint
 
 @app.route('/dashboard')
 def dashboard():

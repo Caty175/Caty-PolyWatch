@@ -67,7 +67,7 @@
 <h2 class="text-3xl font-bold tracking-wider text-white">Create Your Account</h2>
 <p class="mt-2 text-sm text-white/60">Join the defense against advanced threats.</p>
 </div>
-<form class="space-y-4">
+<form class="space-y-4" method="post" action="/signup">
 <div>
 <label class="sr-only" for="username">Username</label>
 <input class="form-input w-full rounded-lg border-2 border-primary/30 bg-background-dark/70 px-4 py-3 text-white placeholder-white/40 transition-all duration-300 focus:border-primary focus:outline-none focus:ring-0 focus:ring-primary/50" id="username" name="username" placeholder="Username" required="" type="text"/>
@@ -84,6 +84,24 @@
 <label class="sr-only" for="confirm-password">Confirm Password</label>
 <input class="form-input w-full rounded-lg border-2 border-primary/30 bg-background-dark/70 px-4 py-3 text-white placeholder-white/40 transition-all duration-300 focus:border-primary focus:outline-none focus:ring-0 focus:ring-primary/50" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required="" type="password"/>
 </div>
+<div class="space-y-2">
+  <div class="text-sm text-white/80">Choose verification method</div>
+  <div class="flex items-center gap-6">
+    <label class="inline-flex items-center gap-2">
+      <input type="radio" name="twofa_method" value="email" checked>
+      <span class="text-sm text-white/80">Email</span>
+    </label>
+    <label class="inline-flex items-center gap-2">
+      <input type="radio" name="twofa_method" value="phone">
+      <span class="text-sm text-white/80">Phone</span>
+    </label>
+  </div>
+</div>
+<div>
+  <label class="sr-only" for="phone">Phone Number</label>
+  <input class="form-input w-full rounded-lg border-2 border-primary/30 bg-background-dark/70 px-4 py-3 text-white placeholder-white/40 transition-all duration-300 focus:border-primary focus:outline-none focus:ring-0 focus:ring-primary/50" id="phone" name="phone" placeholder="Phone Number (with country code)" type="tel"/>
+  <p class="mt-1 text-xs text-white/60">Required if you choose Phone verification.</p>
+  </div>
 <div>
 <button class="glow-shadow w-full rounded-lg bg-primary py-3 text-base font-bold text-white transition-all hover:brightness-110" type="submit">
                   Sign Up
@@ -92,7 +110,7 @@
 </form>
 <p class="text-center text-sm text-white/60">
               Already have an account?
-              <a class="font-medium text-primary hover:underline" href="#">Log In</a>
+              <a class="font-medium text-primary hover:underline" href="/login">Log In</a>
 </p>
 </div>
 </main>
