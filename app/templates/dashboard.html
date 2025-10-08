@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<style>
+      .glow {
+        box-shadow: 0 0 5px theme("colors.primary"), 0 0 10px theme("colors.primary / 50%"), 0 0 20px theme("colors.primary / 30%");
+      }
+    </style>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ff00ff",
+              "background-light": "#f8f5f8",
+              "background-dark": "#230f23",
+            },
+            fontFamily: {
+              display: ["Space Grotesk", "sans-serif"],
+            },
+            borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+          },
+        },
+      };
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white">
+<div class="flex min-h-screen">
+<aside class="w-64 shrink-0 bg-background-light dark:bg-background-dark/50 p-6 flex flex-col justify-between">
+<div>
+<div class="mb-8">
+<h1 class="text-2xl font-bold text-primary">CyberGuard</h1>
+<p class="text-sm text-white/70">v1.0</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary/20 text-primary glow" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M224,115.55V208a16,16,0,0,1-16,16H168a16,16,0,0,1-16-16V168a8,8,0,0,0-8-8H112a8,8,0,0,0-8,8v40a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V115.55a16,16,0,0,1,5.17-11.78l80-75.48.11-.11a16,16,0,0,1,21.53,0,1.14,1.14,0,0,0,.11.11l80,75.48A16,16,0,0,1,224,115.55Z"></path>
+</svg>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 text-white/80 hover:text-white transition-colors" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+</svg>
+<span class="font-medium">Analysis</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 text-white/80 hover:text-white transition-colors" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Z"></path>
+</svg>
+<span class="font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-primary/10 text-white/80 hover:text-white transition-colors" href="#">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Zm-16.1-6.5a73.93,73.93,0,0,1,0,8.68,8,8,0,0,0,1.74,5.48l14.19,17.73a91.57,91.57,0,0,1-6.23,15L187,173.11a8,8,0,0,0-5.1,2.64,74.11,74.11,0,0,1-6.14,6.14,8,8,0,0,0-2.64,5.1l-2.51,22.58a91.32,91.32,0,0,1-15,6.23l-17.74-14.19a8,8,0,0,0-5-1.75h-.48a73.93,73.93,0,0,1-8.68,0,8,8,0,0,0-5.48,1.74L100.45,215.8a91.57,91.57,0,0,1-15-6.23L82.89,187a8,8,0,0,0-2.64-5.1,74.11,74.11,0,0,1-6.14-6.14,8,8,0,0,0-5.1-2.64L46.43,170.6a91.32,91.32,0,0,1-6.23-15l14.19-17.74a8,8,0,0,0,1.74-5.48,73.93,73.93,0,0,1,0-8.68,8,8,0,0,0-1.74-5.48L40.2,100.45a91.57,91.57,0,0,1,6.23-15L69,82.89a8,8,0,0,0,5.1-2.64,74.11,74.11,0,0,1,6.14-6.14A8,8,0,0,0,82.89,69L85.4,46.43a91.32,91.32,0,0,1,15-6.23l17.74,14.19a8,8,0,0,0,5.48,1.74,73.93,73.93,0,0,1,8.68,0,8,8,0,0,0,5.48-1.74L155.55,40.2a91.57,91.57,0,0,1,15,6.23L173.11,69a8,8,0,0,0,2.64,5.1,74.11,74.11,0,0,1,6.14,6.14,8,8,0,0,0,5.1,2.64l22.58,2.51a91.32,91.32,0,0,1,6.23,15l-14.19,17.74A8,8,0,0,0,199.87,123.66Z"></path>
+</svg>
+<span class="font-medium">Settings</span>
+</a>
+</nav>
+</div>
+</aside>
+<main class="flex-1 overflow-y-auto">
+<header class="flex items-center justify-between p-6 border-b border-primary/20">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-2xl font-bold text-white">CyberGuard</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-primary/20 text-white/80 hover:text-white transition-colors">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
+</svg>
+</button>
+<button class="p-2 rounded-full hover:bg-primary/20 text-white/80 hover:text-white transition-colors">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
+</svg>
+</button>
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-primary glow" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBTW_hmdxHB0UgGHGOjUsz0sDcAppkDpUM1TwPmpJidGbhF092VrxaK9VU-ZnSRCjRos6aD9ZSpkDh61Q1wJTE2c10I1szuN7Uk5J0q7VoIKxZROoifpWGZusNCE_H3tXPpl9B27RS_W4VLYFlOWbVJ84ADO_kwt4bzIlEm1FWDyM9fMWnVXOfBFn_UDQer28FhKkOo67ttWJAYkkQ8DAmzFqIM1zHfpjodJ5pqpaemR51nApvOOEpZPt102Zs4JnhZpXMaXIBIsb9v");'></div>
+</div>
+</header>
+<div class="p-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2">
+<div class="mb-8">
+<h2 class="text-4xl font-bold text-white">Dashboard</h2>
+<p class="text-white/70">Overview of system performance and recent activities</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+<div class="bg-primary/10 dark:bg-primary/20 p-6 rounded-xl glow flex flex-col gap-2">
+<p class="text-white/80 font-medium">Total Samples</p>
+<p class="text-3xl font-bold text-white">1,250</p>
+</div>
+<div class="bg-primary/10 dark:bg-primary/20 p-6 rounded-xl glow flex flex-col gap-2">
+<p class="text-white/80 font-medium">Malicious Detections</p>
+<p class="text-3xl font-bold text-white">320</p>
+</div>
+<div class="bg-primary/10 dark:bg-primary/20 p-6 rounded-xl glow flex flex-col gap-2">
+<p class="text-white/80 font-medium">Benign Detections</p>
+<p class="text-3xl font-bold text-white">930</p>
+</div>
+<div class="bg-primary/10 dark:bg-primary/20 p-6 rounded-xl glow flex flex-col gap-2">
+<p class="text-white/80 font-medium">Accuracy</p>
+<p class="text-3xl font-bold text-white">95%</p>
+</div>
+</div>
+<h3 class="text-2xl font-bold text-white mb-4">Detection Rates</h3>
+<div class="bg-background-light dark:bg-background-dark/50 p-6 rounded-xl border border-primary/30 mb-8">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-lg font-medium text-white">Malware vs Benign Detections</p>
+<p class="text-sm text-white/70">Last 30 Days</p>
+</div>
+<div class="text-right">
+<p class="text-4xl font-bold text-white">95%</p>
+<p class="text-base font-medium text-green-400">+5%</p>
+</div>
+</div>
+<div class="h-64">
+<svg fill="none" height="100%" preserveAspectRatio="none" viewBox="0 0 472 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="chart-gradient" x1="0" x2="0" y1="0" y2="100%">
+<stop offset="0%" stop-color="var(--tw-color-primary)" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="var(--tw-color-primary)" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V150H0V109Z" fill="url(#chart-gradient)"></path>
+<path class="text-primary" d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="hsl(var(--primary))" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<div class="flex justify-between text-xs text-white/70 mt-2">
+<span>Day 1</span>
+<span>Day 5</span>
+<span>Day 10</span>
+<span>Day 15</span>
+<span>Day 20</span>
+<span>Day 25</span>
+<span>Day 30</span>
+</div>
+</div>
+<h3 class="text-2xl font-bold text-white mb-4">Recent Analysis Logs</h3>
+<div class="overflow-x-auto rounded-xl border border-primary/30">
+<table class="w-full text-sm text-left">
+<thead class="bg-primary/20 text-xs text-white/80 uppercase tracking-wider">
+<tr>
+<th class="px-6 py-3" scope="col">Timestamp</th>
+<th class="px-6 py-3" scope="col">Filename</th>
+<th class="px-6 py-3" scope="col">Verdict</th>
+<th class="px-6 py-3" scope="col">Confidence</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/20">
+<tr class="bg-background-light/50 dark:bg-background-dark/50 hover:bg-primary/5 dark:hover:bg-primary/10">
+<td class="px-6 py-4 whitespace-nowrap text-white/70">2024-01-15 14:30</td>
+<td class="px-6 py-4 whitespace-nowrap font-medium text-white">malware_sample_1.exe</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400 border border-red-500/50">Malicious</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-24 h-2 bg-primary/20 rounded-full overflow-hidden"><div class="h-full bg-primary" style="width: 85%"></div></div>
+<span class="font-medium text-white">85%</span>
+</div>
+</td>
+</tr>
+<tr class="bg-background-light/50 dark:bg-background-dark/50 hover:bg-primary/5 dark:hover:bg-primary/10">
+<td class="px-6 py-4 whitespace-nowrap text-white/70">2024-01-15 12:00</td>
+<td class="px-6 py-4 whitespace-nowrap font-medium text-white">benign_file_1.pdf</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400 border border-green-500/50">Benign</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-24 h-2 bg-primary/20 rounded-full overflow-hidden"><div class="h-full bg-primary" style="width: 98%"></div></div>
+<span class="font-medium text-white">98%</span>
+</div>
+</td>
+</tr>
+<tr class="bg-background-light/50 dark:bg-background-dark/50 hover:bg-primary/5 dark:hover:bg-primary/10">
+<td class="px-6 py-4 whitespace-nowrap text-white/70">2024-01-14 20:45</td>
+<td class="px-6 py-4 whitespace-nowrap font-medium text-white">suspicious_doc_1.doc</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400 border border-red-500/50">Malicious</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-24 h-2 bg-primary/20 rounded-full overflow-hidden"><div class="h-full bg-primary" style="width: 70%"></div></div>
+<span class="font-medium text-white">70%</span>
+</div>
+</td>
+</tr>
+<tr class="bg-background-light/50 dark:bg-background-dark/50 hover:bg-primary/5 dark:hover:bg-primary/10">
+<td class="px-6 py-4 whitespace-nowrap text-white/70">2024-01-14 10:15</td>
+<td class="px-6 py-4 whitespace-nowrap font-medium text-white">safe_app_1.app</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400 border border-green-500/50">Benign</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-24 h-2 bg-primary/20 rounded-full overflow-hidden"><div class="h-full bg-primary" style="width: 99%"></div></div>
+<span class="font-medium text-white">99%</span>
+</div>
+</td>
+</tr>
+<tr class="bg-background-light/50 dark:bg-background-dark/50 hover:bg-primary/5 dark:hover:bg-primary/10">
+<td class="px-6 py-4 whitespace-nowrap text-white/70">2024-01-13 18:00</td>
+<td class="px-6 py-4 whitespace-nowrap font-medium text-white">unknown_script_1.js</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-3 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400 border border-red-500/50">Malicious</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-24 h-2 bg-primary/20 rounded-full overflow-hidden"><div class="h-full bg-primary" style="width: 65%"></div></div>
+<span class="font-medium text-white">65%</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="lg:col-span-1">
+<div class="bg-background-dark/50 p-6 rounded-xl border border-primary/30 glow h-full">
+<h3 class="text-2xl font-bold text-white mb-4">Notification Center</h3>
+<div class="flex flex-col gap-4">
+<div class="bg-primary/10 p-4 rounded-lg border-l-4 border-yellow-400 flex items-start gap-4">
+<div class="w-6 h-6 shrink-0 text-yellow-400 mt-1">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M240.26,186.42l-80-152.38a16,16,0,0,0-28.52,0l-80,152.38A16,16,0,0,0,64,208H200a16,16,0,0,0,13.2-24.52A15.9,15.9,0,0,0,240.26,186.42ZM200,192H64L132,54.86,200,192Zm-72-80v40a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm-8,64a12,12,0,1,1,12-12A12,12,0,0,1,120,176Z"></path></svg>
+</div>
+<div>
+<p class="font-semibold text-white">High-risk Alert</p>
+<p class="text-sm text-white/70">Polymorphic malware detected in 'invoice.exe'</p>
+<div class="mt-2 flex gap-2">
+<button class="text-xs font-medium text-primary hover:underline">View Details</button>
+<button class="text-xs font-medium text-white/50 hover:text-white">Dismiss</button>
+</div>
+</div>
+</div>
+<div class="bg-primary/10 p-4 rounded-lg border-l-4 border-green-400 flex items-start gap-4">
+<div class="w-6 h-6 shrink-0 text-green-400 mt-1">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>
+</div>
+<div>
+<p class="font-semibold text-white">Analysis Complete</p>
+<p class="text-sm text-white/70">Analysis of 'report_q4.pdf' is complete. Verdict: Benign.</p>
+<div class="mt-2 flex gap-2">
+<button class="text-xs font-medium text-primary hover:underline">View Report</button>
+<button class="text-xs font-medium text-white/50 hover:text-white">Dismiss</button>
+</div>
+</div>
+</div>
+<div class="bg-primary/10 p-4 rounded-lg border-l-4 border-blue-400 flex items-start gap-4">
+<div class="w-6 h-6 shrink-0 text-blue-400 mt-1">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"></path></svg>
+</div>
+<div>
+<p class="font-semibold text-white">System Message</p>
+<p class="text-sm text-white/70">Scheduled maintenance on 2024-01-20 at 02:00 AM UTC.</p>
+<div class="mt-2 flex gap-2">
+<button class="text-xs font-medium text-white/50 hover:text-white">Dismiss</button>
+</div>
+</div>
+</div>
+<div class="bg-primary/10 p-4 rounded-lg border-l-4 border-yellow-400 flex items-start gap-4">
+<div class="w-6 h-6 shrink-0 text-yellow-400 mt-1">
+<svg fill="currentColor" height="24" viewBox="0 0 256 256" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M240.26,186.42l-80-152.38a16,16,0,0,0-28.52,0l-80,152.38A16,16,0,0,0,64,208H200a16,16,0,0,0,13.2-24.52A15.9,15.9,0,0,0,240.26,186.42ZM200,192H64L132,54.86,200,192Zm-72-80v40a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm-8,64a12,12,0,1,1,12-12A12,12,0,0,1,120,176Z"></path></svg>
+</div>
+<div>
+<p class="font-semibold text-white">APT Threat Detected</p>
+<p class="text-sm text-white/70">Suspicious network activity linked to known APT group.</p>
+<div class="mt-2 flex gap-2">
+<button class="text-xs font-medium text-primary hover:underline">View Details</button>
+<button class="text-xs font-medium text-white/50 hover:text-white">Dismiss</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

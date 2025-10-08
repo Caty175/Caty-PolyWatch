@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#f906f9",
+              "background-light": "#f8f5f8",
+              "background-dark": "#230f23",
+            },
+            fontFamily: {
+              display: ["Space Grotesk"],
+            },
+            borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+          },
+        },
+      };
+    </script>
+<style>
+      .form-select {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23f906f9' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="flex h-full min-h-screen">
+<aside class="w-64 flex-shrink-0 bg-background-light dark:bg-background-dark border-r border-primary/20 dark:border-primary/20 hidden lg:flex flex-col">
+<div class="h-16 flex items-center px-6 gap-3 border-b border-primary/20 dark:border-primary/20">
+<div class="w-8 h-8 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAvxsCzFZ4i3zdlZllTYJ2sZ6ZB0pGfYWrXOX4ZdtIjoEXfpobOu5p5sOVHPX-O3DWOdG2Hv-YQBoCPhx8Y_O7PvquYPasnyhXaNFtahFTp1B5uHJlKt14u9YuuQQ0KzsZmVDVbVbR43fRtHy_xRC23khPr2fl0_TMLAEQrBVR-_IhVWHJ3Xio9yN2gJELTqSdrqRkTV8bC2YeaBIz-KxnsVO6coImsyqXZcHzM0MBXA6p7j13v7M7stxh9SSN2q2_Qo7pFqgr3ZmFP")'></div>
+<h1 class="text-xl font-bold text-black dark:text-white">CyberLab</h1>
+</div>
+<nav class="flex-grow p-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-2 text-sm font-medium rounded-lg text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<svg class="w-5 h-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-sm font-medium rounded-lg text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<svg class="w-5 h-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<circle cx="11" cy="11" r="8"></circle>
+<line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+</svg>
+<span>Analysis</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-sm font-medium rounded-lg text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<svg class="w-5 h-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 20V10"></path>
+<path d="M18 20V4"></path>
+<path d="M6 20V16"></path>
+</svg>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-sm font-medium rounded-lg bg-primary text-white" href="#">
+<svg class="w-5 h-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+<polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+<line x1="12" x2="12" y1="22.08" y2="12"></line>
+</svg>
+<span>Sandbox</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-sm font-medium rounded-lg text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<svg class="w-5 h-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 0 2l-.15.08a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1 0-2l.15-.08a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+<circle cx="12" cy="12" r="3"></circle>
+</svg>
+<span>Settings</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<a class="flex items-center gap-3 px-4 py-2 text-sm font-medium rounded-lg text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<svg class="w-5 h-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+<line x1="12" x2="12.01" y1="17" y2="17"></line>
+</svg>
+<span>Help</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col">
+<header class="h-16 flex items-center justify-between px-6 border-b border-primary/20 dark:border-primary/20">
+<h2 class="text-2xl font-bold text-black dark:text-white">Sandbox Configuration</h2>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20">
+<svg class="w-6 h-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+</svg>
+</button>
+<button class="p-2 rounded-full text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20">
+<svg class="w-6 h-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10"></circle>
+<path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+<line x1="12" x2="12.01" y1="17" y2="17"></line>
+</svg>
+</button>
+<div class="w-10 h-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKur525vVBxFSlOEQCYkGRLP2dP3z8JkPa2FDJbLhZXcBlmtrfYV3nOsjxdbNqeNAsqpjOlWnROm1pZfTLg3bbqAOjk2GT2N-xcifyV3l5YVyTs8IKCZ5YuL9VmEgkvJ5R7cMC078KD9wA2yvW4cvF34HNT07u2IERcbIgsLYI8bEX8F-37jZY6Lo27lk9Du0kyqrNfBrlFUKjsBWuszHxrzzqfr4gWAvDBnmOutylaiW9Whyz58gLs-CHjnsfLHy3hWgxa2q4vbZX")'></div>
+</div>
+</header>
+<main class="flex-1 p-6 md:p-8">
+<div class="grid gap-8">
+<div>
+<h3 class="text-xl font-bold text-black dark:text-white mb-4">Sandbox Status</h3>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="p-6 rounded-lg bg-background-light dark:bg-background-dark border border-primary/20 dark:border-primary/20 shadow-[0_0_15px_rgba(249,6,249,0.2)]">
+<p class="text-sm font-medium text-black/70 dark:text-white/70">Status</p>
+<p class="text-3xl font-bold text-primary">Running</p>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-bold text-black dark:text-white mb-4">Sandbox Settings</h3>
+<div class="space-y-6 max-w-lg">
+<div>
+<label class="block text-sm font-medium text-black dark:text-white mb-2" for="timeout">Timeout (seconds)</label>
+<input class="w-full h-12 px-4 rounded-lg bg-background-light dark:bg-background-dark border border-primary/30 dark:border-primary/30 text-black dark:text-white focus:ring-primary focus:border-primary" id="timeout" type="number" value="120"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-black dark:text-white mb-2" for="memory">Memory Limit (MB)</label>
+<input class="w-full h-12 px-4 rounded-lg bg-background-light dark:bg-background-dark border border-primary/30 dark:border-primary/30 text-black dark:text-white focus:ring-primary focus:border-primary" id="memory" type="number" value="1024"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-black dark:text-white mb-2" for="vm-image">VM Image</label>
+<select class="form-select w-full h-12 px-4 rounded-lg bg-background-light dark:bg-background-dark border border-primary/30 dark:border-primary/30 text-black dark:text-white appearance-none focus:ring-primary focus:border-primary" id="vm-image">
+<option>Windows 10 Pro (Default)</option>
+<option>Ubuntu 22.04 LTS</option>
+<option>Android 12</option>
+</select>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-bold text-black dark:text-white mb-4">Behavior Monitoring</h3>
+<div class="space-y-4 max-w-lg">
+<div class="flex items-center justify-between p-4 rounded-lg bg-background-light dark:bg-background-dark border border-primary/20 dark:border-primary/20">
+<span class="font-medium text-black dark:text-white">Network Access</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-primary/30 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/50 rounded-full peer dark:bg-primary/40 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 rounded-lg bg-background-light dark:bg-background-dark border border-primary/20 dark:border-primary/20">
+<span class="font-medium text-black dark:text-white">File System Monitoring</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-primary/30 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/50 rounded-full peer dark:bg-primary/40 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 rounded-lg bg-background-light dark:bg-background-dark border border-primary/20 dark:border-primary/20">
+<span class="font-medium text-black dark:text-white">Registry Tracking</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-primary/30 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/50 rounded-full peer dark:bg-primary/40 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<div class="flex justify-end pt-4">
+<button class="px-6 py-3 rounded-lg bg-primary text-white font-bold text-sm shadow-[0_0_20px_rgba(249,6,249,0.5)] hover:bg-primary/90 transition-colors">Apply &amp; Save</button>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>
