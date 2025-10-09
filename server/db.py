@@ -1,4 +1,5 @@
 from flask import Flask
+from importlib import import_module
 
 try:
     from flask_pymongo import PyMongo
@@ -32,7 +33,10 @@ def init_backend(app: Flask):
     # Try to import backend modules if present (optional during development)
     for module_name in ("login", "signup", "reports", "sandbox"):
         try:
-            __import__(f"server.{module_name}")
+            module = import_module(f"server.{module_name}")
+            # Initialize login module with mongo instance if available
+            if module_name == "login" and hasattr(module, 'init_login'):
+                module.init_login(mongo)
         except Exception:
             # Module may be missing; continue without failing startup
             pass

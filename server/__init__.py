@@ -10,11 +10,6 @@ import os
 # Load the environment variables
 load_dotenv()
 
-print("[DEBUG] Loaded .env successfully")
-print("[DEBUG] BREVO_API_KEY:", bool(os.getenv("BREVO_API_KEY")))
-print("[DEBUG] BREVO_SENDER_EMAIL:", os.getenv("BREVO_SENDER_EMAIL"))
-
-
 # Re-export utilities for convenience if needed.
 try:
     from .db import init_backend, mongo  # noqa: F401

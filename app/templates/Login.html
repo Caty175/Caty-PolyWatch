@@ -60,7 +60,19 @@
 <h1 class="text-3xl font-bold text-black dark:text-white">Cyber Lab Access</h1>
 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Securely login to your account</p>
 </div>
-<form class="mt-8 space-y-6">
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="mt-4 space-y-2">
+  {% for category, message in messages %}
+  <div class="rounded-lg px-4 py-3 text-sm {{ 'bg-red-100 text-red-700' if category == 'error' else 'bg-green-100 text-green-700' }}">
+    {{ message }}
+  </div>
+  {% endfor %}
+  </div>
+{% endif %}
+{% endwith %}
+<!-- <form class="mt-8 space-y-6" id="loginForm"> -->
+<form class="space-y-4" method="post" action="/login">
 <div>
 <label class="sr-only" for="email">Email</label>
 <input autocomplete="email" class="w-full rounded-lg border-primary/30 bg-background-light/50 dark:bg-background-dark/50 p-4 placeholder-gray-500 dark:placeholder-gray-400 text-black dark:text-white focus:border-primary focus:ring-primary" id="email" name="email" placeholder="Email" required="" type="email"/>
@@ -69,9 +81,11 @@
 <label class="sr-only" for="password">Password</label>
 <input autocomplete="current-password" class="w-full rounded-lg border-primary/30 bg-background-light/50 dark:bg-background-dark/50 p-4 placeholder-gray-500 dark:placeholder-gray-400 text-black dark:text-white focus:border-primary focus:ring-primary" id="password" name="password" placeholder="Password" required="" type="password"/>
 </div>
+<div id="errorMessage" class="hidden text-red-500 text-sm text-center"></div>
 <div>
-<button class="w-full rounded-lg bg-primary py-3 px-4 font-bold text-white shadow-md transition-all duration-300 hover:bg-primary/90 hover:shadow-primary/50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="submit">
-                  Login
+<button class="w-full rounded-lg bg-primary py-3 px-4 font-bold text-white shadow-md transition-all duration-300 hover:bg-primary/90 hover:shadow-primary/50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-light dark:focus:ring-offset-background-dark" type="submit" id="loginButton">
+                  <span id="loginText">Login</span>
+                  <span id="loginSpinner" class="hidden">Logging in...</span>
                 </button>
 </div>
 </form>
@@ -79,5 +93,82 @@
 </div>
 </div>
 </div>
+
+<!-- <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+    const errorMessage = document.getElementById('errorMessage');
+    const loginButton = document.getElementById('loginButton');
+    const loginText = document.getElementById('loginText');
+    const loginSpinner = document.getElementById('loginSpinner');
+
+    loginForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        
+        // Validate inputs
+        if (!email || !password) {
+            showError('Please fill in all fields');
+            return;
+        }
+        
+        // Show loading state
+        setLoadingState(true);
+        hideError();
+        
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok) {
+                // Login successful
+                window.location.href = '/dashboard';
+            } else {
+                // Login failed
+                showError(data.error || 'Login failed');
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            showError('Network error. Please try again.');
+        } finally {
+            setLoadingState(false);
+        }
+    });
+    
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.remove('hidden');
+    }
+    
+    function hideError() {
+        errorMessage.classList.add('hidden');
+    }
+    
+    function setLoadingState(loading) {
+        if (loading) {
+            loginButton.disabled = true;
+            loginText.classList.add('hidden');
+            loginSpinner.classList.remove('hidden');
+        } else {
+            loginButton.disabled = false;
+            loginText.classList.remove('hidden');
+            loginSpinner.classList.add('hidden');
+        }
+    }
+});
+</script> -->
 
 </body></html>
