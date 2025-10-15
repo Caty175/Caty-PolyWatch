@@ -46,7 +46,7 @@ try:
 except Exception:
     display_dataframe_to_user = None
 
-DATA_PATH = "/mnt/data/Malware_Analysis.csv"
+DATA_PATH = "C:/Users/Admin/github-classroom/Caty175/Caty-PolyWatch/ML model/Malware_Analysis.csv"
 assert os.path.exists(DATA_PATH), f"Dataset not found at {DATA_PATH}"
 
 # Load dataset
@@ -154,6 +154,7 @@ else:
     print("Prepared TF-IDF numeric data reshaped for LSTM with shape:", X_seq.shape)
 
 # Use consistent train/test split for both models
+
 RANDOM_STATE = 42
 Xs_train, Xs_test, y_train, y_test = train_test_split(X_static_scaled, y, test_size=0.2, random_state=RANDOM_STATE, stratify=y if n_classes>1 else None)
 if use_text_sequence_for_lstm:
