@@ -1,15 +1,21 @@
-from flask import Blueprint, request, redirect, url_for, render_template
+from flask import Blueprint, request, redirect, url_for, render_template, session, flash
 from werkzeug.security import generate_password_hash
 from server.db import mongo
 import random
 import string
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 import re
+import secrets
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Load environment variables
 load_dotenv()
@@ -21,19 +27,41 @@ def validate_email(email):
 
 
 def validate_password(password):
-    """Validate password strength"""
-    if len(password) < 8:
-        return False, "Password must be at least 8 characters long"
-    
+    """Validate password strength with enhanced security requirements"""
+    if len(password) < 12:
+        return False, "Password must be at least 12 characters long"
+
+    if len(password) > 128:
+        return False, "Password must be less than 128 characters long"
+
     if not re.search(r'[A-Z]', password):
         return False, "Password must contain at least one uppercase letter"
-    
+
     if not re.search(r'[a-z]', password):
         return False, "Password must contain at least one lowercase letter"
-    
+
     if not re.search(r'\d', password):
         return False, "Password must contain at least one number"
-    
+
+    if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+        return False, "Password must contain at least one special character"
+
+    # Check for common weak patterns
+    weak_patterns = [
+        r'(.)\1{2,}',  # Three or more consecutive identical characters
+        r'(012|123|234|345|456|567|678|789|890)',  # Sequential numbers
+        r'(abc|bcd|cde|def|efg|fgh|ghi|hij|ijk|jkl|klm|lmn|mno|nop|opq|pqr|qrs|rst|stu|tuv|uvw|vwx|wxy|xyz)',  # Sequential letters
+    ]
+
+    for pattern in weak_patterns:
+        if re.search(pattern, password.lower()):
+            return False, "Password contains weak patterns (avoid sequential or repeated characters)"
+
+    # Check against common passwords (basic check)
+    common_passwords = ['password', '123456', 'qwerty', 'admin', 'letmein', 'welcome']
+    if password.lower() in common_passwords:
+        return False, "Password is too common, please choose a stronger password"
+
     return True, "Password is valid"
 
 def send_verification_email(to_email: str, otp: str) -> bool:
@@ -103,66 +131,133 @@ def signup_get():
     return render_template('signUp.html')
 
 
+def validate_input_data(username, email, password, confirm_password, phone=None):
+    """Validate all input data with comprehensive checks"""
+    errors = []
+
+    # Username validation
+    if not username or len(username.strip()) < 3:
+        errors.append("Username must be at least 3 characters long")
+    elif len(username) > 50:
+        errors.append("Username must be less than 50 characters")
+    elif not re.match(r'^[a-zA-Z0-9_-]+$', username):
+        errors.append("Username can only contain letters, numbers, hyphens, and underscores")
+
+    # Email validation
+    if not email:
+        errors.append("Email is required")
+    elif not validate_email(email):
+        errors.append("Invalid email format")
+    elif len(email) > 254:
+        errors.append("Email address is too long")
+
+    # Password validation
+    if not password:
+        errors.append("Password is required")
+    else:
+        is_valid, message = validate_password(password)
+        if not is_valid:
+            errors.append(message)
+
+    # Confirm password
+    if password != confirm_password:
+        errors.append("Passwords do not match")
+
+    # Phone validation (if provided)
+    if phone:
+        # Basic phone number validation
+        phone_clean = re.sub(r'[^\d+]', '', phone)
+        if len(phone_clean) < 10 or len(phone_clean) > 15:
+            errors.append("Invalid phone number format")
+
+    return errors
+
 @signup_bp.route('/signup', methods=['POST'])
 def signup_post():
     if mongo is None:
-        # Backend not initialized with Mongo; fail fast with clear message
+        logger.error("Database not available for signup")
         return ("Database not available", 500)
 
-    username = request.form.get('username', '').strip()
-    email = request.form.get('email', '').strip().lower()
-    password = request.form.get('password', '')
-    confirm_password = request.form.get('confirm-password', '')
+    try:
+        username = request.form.get('username', '').strip()
+        email = request.form.get('email', '').strip().lower()
+        password = request.form.get('password', '')
+        confirm_password = request.form.get('confirm-password', '')
+        twofa_method = request.form.get('twofa_method', 'email')
+        phone = request.form.get('phone', '').strip()
 
-    twofa_method = request.form.get('twofa_method', 'email')
-    phone = request.form.get('phone', '').strip()
+        # Comprehensive input validation
+        validation_errors = validate_input_data(username, email, password, confirm_password, phone)
+        if validation_errors:
+            logger.warning(f"Signup validation failed for {email}: {validation_errors}")
+            return ("; ".join(validation_errors), 400)
 
-    if not username or not email or not password or not confirm_password:
-        return ("All fields are required", 400)
-    if password != confirm_password:
-        return ("Passwords do not match", 400)
-    if twofa_method == 'phone' and not phone:
-        return ("Phone number required for phone verification", 400)
+        if twofa_method == 'phone' and not phone:
+            return ("Phone number required for phone verification", 400)
 
-    users = mongo.db.users  # type: ignore[attr-defined]
+        users = mongo.db.users  # type: ignore[attr-defined]
 
-    # Uniqueness checks
-    if users.find_one({'email': email}):
-        return ("Email already registered", 409)
-    if users.find_one({'username': username}):
-        return ("Username already taken", 409)
-    if phone and users.find_one({'phone': phone}):
-        return ("Phone already registered", 409)
+        # Uniqueness checks with proper error handling
+        try:
+            if users.find_one({'email': email}):
+                logger.warning(f"Signup attempt with existing email: {email}")
+                return ("Email already registered", 409)
+            if users.find_one({'username': username}):
+                logger.warning(f"Signup attempt with existing username: {username}")
+                return ("Username already taken", 409)
+            if phone and users.find_one({'phone': phone}):
+                logger.warning(f"Signup attempt with existing phone: {phone}")
+                return ("Phone already registered", 409)
+        except Exception as e:
+            logger.error(f"Database error during uniqueness check: {e}")
+            return ("Database error occurred", 500)
 
-    password_hash = generate_password_hash(password)
+        # Generate secure password hash
+        password_hash = generate_password_hash(password, method='pbkdf2:sha256', salt_length=16)
 
-    # Generate an OTP and expiry (5 minutes)
-    otp = ''.join(random.choices(string.digits, k=6))
-    otp_expires_at = datetime.utcnow() + timedelta(minutes=5)
+        # Generate a secure OTP and expiry (5 minutes)
+        otp = ''.join(secrets.choice(string.digits) for _ in range(6))
+        otp_expires_at = datetime.now(timezone.utc) + timedelta(minutes=5)
 
-    users.insert_one({
-        'username': username,
-        'email': email,
-        'password_hash': password_hash,
-        'phone': phone if phone else None,
-        'is_verified': False,
-        'twofa_method': twofa_method,
-        'otp': otp,
-        'otp_expires_at': otp_expires_at,
-    })
+        # Create user record with additional security fields
+        user_data = {
+            'username': username,
+            'email': email,
+            'password_hash': password_hash,
+            'phone': phone if phone else None,
+            'is_verified': False,
+            'twofa_method': twofa_method,
+            'otp': otp,
+            'otp_expires_at': otp_expires_at,
+            'created_at': datetime.now(timezone.utc),
+            'failed_login_attempts': 0,
+            'locked': False,
+            'active': True
+        }
 
-    # Send OTP via email or SMS
-    if twofa_method == 'email':
-        sent = send_verification_email(email, otp)
-        if not sent:
-            print(f"[2FA] Email sending failed. OTP for {email}: {otp}")
-            print(f"[2FA] Please check your SMTP configuration.")
+        try:
+            users.insert_one(user_data)
+            logger.info(f"New user created: {username} ({email})")
+        except Exception as e:
+            logger.error(f"Database error during user creation: {e}")
+            return ("Failed to create user account", 500)
+
+        # Send OTP via email or SMS
+        if twofa_method == 'email':
+            sent = send_verification_email(email, otp)
+            if not sent:
+                logger.error(f"Email sending failed for {email}. OTP: {otp}")
+                logger.error("Please check your SMTP configuration.")
+            else:
+                logger.info(f"Verification email sent to {email}")
         else:
-            print(f"[2FA] Verification email sent to {email}")
-    else:
-        print(f"[2FA] Send OTP to phone {phone}: {otp}")
+            logger.info(f"SMS OTP should be sent to phone {phone}: {otp}")
 
-    return redirect(url_for('signup.verify_get', username=username))
+        return redirect(url_for('signup.verify_get', username=username))
+
+    except Exception as e:
+        logger.error(f"Unexpected error during signup: {e}")
+        return ("An unexpected error occurred during signup", 500)
 
 
 @signup_bp.route('/verify', methods=['GET'])
@@ -194,7 +289,7 @@ def verify_post():
         return ("Invalid code", 400)
 
     expires_at = user.get('otp_expires_at')
-    if isinstance(expires_at, datetime) and expires_at < datetime.utcnow():
+    if isinstance(expires_at, datetime) and expires_at < datetime.now(timezone.utc):
         return ("Code expired", 400)
 
     users.update_one({'_id': user['_id']}, {

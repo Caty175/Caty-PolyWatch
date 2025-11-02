@@ -87,9 +87,10 @@ def authenticate_user(email, password):
         )
         
         # Update last login time
+        from datetime import timezone
         mongo_inst.db.users.update_one(
             {"_id": user['_id']},
-            {"$set": {"last_login": datetime.now()}}
+            {"$set": {"last_login": datetime.now(timezone.utc)}}
         )
         
         # Remove password from user object before returning
