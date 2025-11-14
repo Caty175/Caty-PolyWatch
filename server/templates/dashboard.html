@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard • Malware Detection</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-layout">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-section sidebar-section-primary">
+                <div class="sidebar-section-header">
+                    <h2>Results</h2>
+                    <span class="result-count" id="resultsCount">0</span>
+                </div>
+                <ul id="resultsList" class="results-list">
+                    <li class="results-placeholder">No scans yet. Upload a file to get started.</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section sidebar-section-muted">
+                <h3>Settings</h3>
+                <div class="sidebar-card">
+                    <p>Adjust thresholds, notifications, or integrations.</p>
+                    <button class="btn btn-secondary" id="openSettingsBtn" type="button">Open Settings</button>
+                </div>
+            </div>
+
+            <div class="sidebar-section sidebar-section-muted">
+                <h3>Model</h3>
+                <div class="sidebar-card">
+                    <p><strong>Hybrid Malware Detector</strong></p>
+                    <p class="sidebar-meta">Random Forest + LSTM Behavioral</p>
+                    <p class="sidebar-meta">Last trained: <span id="modelTrainingDate">unknown</span></p>
+                    <a class="btn btn-secondary" href="/model/info" target="_blank" rel="noopener">View Model Info</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-header">
+                <div>
+                    <h1>File Analysis</h1>
+                    <p>Upload Windows PE executables or supported scripts to run malware detection.</p>
+                </div>
+                <div class="header-actions">
+                    <a class="btn btn-secondary" href="/health" target="_blank" rel="noopener">API Health</a>
+                    <a class="btn btn-outline" href="https://github.com/Caty175/poly_trial" target="_blank" rel="noopener">Documentation</a>
+                </div>
+            </header>
+
+            <section class="upload-panel">
+                <div class="upload-dropzone" id="dropZone">
+                    <input type="file" id="fileInput" class="file-input" accept=".exe,.dll,.sys,.js,.vbs,.ps1,.py">
+                    <div class="dropzone-icon">⬆️</div>
+                    <h2>Drag &amp; drop files here</h2>
+                    <p>or <button class="link-button" type="button" id="browseBtn">browse</button> from your device</p>
+                    <ul class="allowed-types">
+                        <li>.exe</li>
+                        <li>.dll</li>
+                        <li>.sys</li>
+                        <li>.js</li>
+                        <li>.vbs</li>
+                        <li>.ps1</li>
+                        <li>.py</li>
+                    </ul>
+                    <div class="upload-hint">Maximum size 100 MB</div>
+                </div>
+
+                <div class="upload-actions">
+                    <div class="file-summary" id="fileSummary">
+                        <span class="file-name">No file selected</span>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-outline" type="button" id="clearBtn" disabled>Clear</button>
+                        <button class="btn btn-primary" type="button" id="scanBtn" disabled>Scan File</button>
+                    </div>
+                </div>
+
+                <div class="alert alert-error" id="uploadError" role="alert" aria-live="polite"></div>
+                <div class="alert alert-success" id="uploadSuccess" role="status" aria-live="polite"></div>
+            </section>
+
+            <section class="results-panel">
+                <div class="results-header">
+                    <h2>Scan Result</h2>
+                    <span class="result-badge" id="resultStatusBadge">Pending</span>
+                </div>
+
+                <div class="result-content" id="resultContent">
+                    <p class="result-placeholder">Scan a file to see detection results, confidence scores, and feature highlights.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/static/dashboard.js"></script>
+</body>
+</html>
+

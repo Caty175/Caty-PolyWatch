@@ -1,0 +1,151 @@
+{
+  "features": [
+    "general.size",
+    "general.vsize",
+    "general.has_debug",
+    "general.exports",
+    "general.imports",
+    "general.has_relocations",
+    "general.has_resources",
+    "general.has_signature",
+    "general.has_tls",
+    "general.symbols",
+    "header.coff.timestamp",
+    "header.coff.machine",
+    "header.coff.characteristics",
+    "header.optional.subsystem",
+    "header.optional.dll_characteristics",
+    "header.optional.magic",
+    "header.optional.major_image_version",
+    "header.optional.minor_image_version",
+    "header.optional.major_linker_version",
+    "header.optional.minor_linker_version",
+    "header.optional.major_operating_system_version",
+    "header.optional.minor_operating_system_version",
+    "header.optional.major_subsystem_version",
+    "header.optional.minor_subsystem_version",
+    "header.optional.sizeof_code",
+    "header.optional.sizeof_headers",
+    "header.optional.sizeof_heap_commit",
+    "section.entry",
+    "section.sections"
+  ],
+  "num_features": 29,
+  "use_pca": false,
+  "pca_components": null,
+  "use_smote": false,
+  "training_date": "2025-11-08T14:17:16.181918",
+  "model_params": {
+    "n_estimators": 200,
+    "max_depth": 30,
+    "min_samples_split": 10,
+    "min_samples_leaf": 4,
+    "max_features": "sqrt",
+    "class_weight": "balanced",
+    "random_state": 42,
+    "n_jobs": -1,
+    "verbose": 1
+  },
+  "metrics": {
+    "accuracy": 0.9293710563810299,
+    "roc_auc": 0.9778635071165018,
+    "confusion_matrix": [
+      [
+        3289,
+        156
+      ],
+      [
+        191,
+        1277
+      ]
+    ]
+  },
+  "top_features": [
+    {
+      "feature": "header.coff.timestamp",
+      "importance": 0.20176039129711099
+    },
+    {
+      "feature": "general.vsize",
+      "importance": 0.09974283289206635
+    },
+    {
+      "feature": "general.imports",
+      "importance": 0.09518557422423496
+    },
+    {
+      "feature": "general.size",
+      "importance": 0.08853586302028887
+    },
+    {
+      "feature": "header.optional.sizeof_code",
+      "importance": 0.08543772423799456
+    },
+    {
+      "feature": "header.optional.minor_linker_version",
+      "importance": 0.06373945396856857
+    },
+    {
+      "feature": "header.optional.major_linker_version",
+      "importance": 0.046874642646160765
+    },
+    {
+      "feature": "general.has_tls",
+      "importance": 0.04654446406205327
+    },
+    {
+      "feature": "header.optional.major_operating_system_version",
+      "importance": 0.04616419216949628
+    },
+    {
+      "feature": "general.exports",
+      "importance": 0.03717017785355689
+    },
+    {
+      "feature": "header.optional.major_image_version",
+      "importance": 0.02888102645831587
+    },
+    {
+      "feature": "general.has_signature",
+      "importance": 0.028728426199067413
+    },
+    {
+      "feature": "header.optional.major_subsystem_version",
+      "importance": 0.0264704943674097
+    },
+    {
+      "feature": "general.has_debug",
+      "importance": 0.02581589873913538
+    },
+    {
+      "feature": "header.optional.minor_subsystem_version",
+      "importance": 0.017360196957417664
+    },
+    {
+      "feature": "header.optional.sizeof_headers",
+      "importance": 0.016417183676413406
+    },
+    {
+      "feature": "general.has_relocations",
+      "importance": 0.01551255006833216
+    },
+    {
+      "feature": "header.optional.minor_operating_system_version",
+      "importance": 0.012630943139393712
+    },
+    {
+      "feature": "general.has_resources",
+      "importance": 0.0073999992312604145
+    },
+    {
+      "feature": "header.optional.minor_image_version",
+      "importance": 0.005849929888803642
+    }
+  ],
+  "metadata_prefixes": [
+    "general.",
+    "header.",
+    "section.",
+    "datadirectories."
+  ]
+}
