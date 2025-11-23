@@ -21,6 +21,14 @@ from werkzeug.utils import secure_filename
 # Import the sandbox
 from windows_sandbox import WindowsSandbox
 
+# Import VirtualBox snapshot manager (optional)
+try:
+    from vbox_snapshot import VirtualBoxSnapshotManager
+    VBOX_AVAILABLE = True
+except ImportError:
+    VirtualBoxSnapshotManager = None
+    VBOX_AVAILABLE = False
+
 # Flask app
 app = Flask(__name__)
 
@@ -37,13 +45,59 @@ LOGS_FOLDER.mkdir(exist_ok=True)
 config = {
     'default_duration': 120,
     'max_duration': 600,
-    'auto_cleanup': True
+    'auto_cleanup': True,
+    'auto_revert_snapshot': False,  # Enable automatic snapshot revert
+    'vm_name': None,  # VirtualBox VM name (required if auto_revert_snapshot=True)
+    'snapshot_name': 'Clean State'  # Snapshot name to revert to
 }
+
+# VirtualBox snapshot manager (initialized if configured)
+vbox_manager = None
 
 
 def allowed_file(filename):
     """Check if file extension is allowed"""
     return Path(filename).suffix.lower() in ALLOWED_EXTENSIONS
+
+
+def _initialize_snapshot_manager():
+    """Initialize VirtualBox snapshot manager if configured"""
+    global vbox_manager
+    
+    if not VBOX_AVAILABLE:
+        vbox_manager = None
+        return
+    
+    if config.get('auto_revert_snapshot') and config.get('vm_name'):
+        try:
+            vbox_manager = VirtualBoxSnapshotManager(
+                vm_name=config['vm_name'],
+                snapshot_name=config.get('snapshot_name', 'Clean State')
+            )
+            
+            # Check if everything is ready
+            if vbox_manager.is_available():
+                vm_exists, vm_msg = vbox_manager.check_vm_exists()
+                if vm_exists:
+                    snapshot_exists, snapshot_msg = vbox_manager.check_snapshot_exists()
+                    if snapshot_exists:
+                        print(f"✅ VirtualBox snapshot manager initialized")
+                        print(f"   VM: {config['vm_name']}")
+                        print(f"   Snapshot: {config.get('snapshot_name', 'Clean State')}")
+                    else:
+                        print(f"⚠️  Snapshot manager initialized but snapshot check failed: {snapshot_msg}")
+                        vbox_manager = None
+                else:
+                    print(f"⚠️  Snapshot manager initialized but VM check failed: {vm_msg}")
+                    vbox_manager = None
+            else:
+                print(f"⚠️  VBoxManage not found. Snapshot revert disabled.")
+                vbox_manager = None
+        except Exception as e:
+            print(f"⚠️  Failed to initialize snapshot manager: {e}")
+            vbox_manager = None
+    else:
+        vbox_manager = None
 
 
 @app.route('/health', methods=['GET'])
@@ -136,16 +190,32 @@ def analyze_file():
             except:
                 pass
         
+        # Revert VM snapshot if configured
+        snapshot_reverted = False
+        if config['auto_revert_snapshot'] and vbox_manager:
+            try:
+                success, message = vbox_manager.revert_to_snapshot()
+                if success:
+                    snapshot_reverted = True
+                    print(f"✅ {message}")
+                else:
+                    print(f"⚠️  Snapshot revert failed: {message}")
+            except Exception as e:
+                print(f"⚠️  Error reverting snapshot: {e}")
+        
         # Return report
-        return jsonify({
+        response_data = {
             'analysis_id': analysis_id,
             'status': 'completed',
             'filename': filename,
             'duration': duration,
             'timestamp': datetime.now().isoformat(),
             'report': report,
-            'report_file': str(report_path)
-        }), 200
+            'report_file': str(report_path),
+            'snapshot_reverted': snapshot_reverted
+        }
+        
+        return jsonify(response_data), 200
         
     except Exception as e:
         import traceback
@@ -274,6 +344,19 @@ def manage_config():
             if 'auto_cleanup' in data:
                 config['auto_cleanup'] = bool(data['auto_cleanup'])
             
+            if 'auto_revert_snapshot' in data:
+                config['auto_revert_snapshot'] = bool(data['auto_revert_snapshot'])
+                # Reinitialize snapshot manager if enabled
+                _initialize_snapshot_manager()
+            
+            if 'vm_name' in data:
+                config['vm_name'] = data['vm_name']
+                _initialize_snapshot_manager()
+            
+            if 'snapshot_name' in data:
+                config['snapshot_name'] = data['snapshot_name']
+                _initialize_snapshot_manager()
+            
             return jsonify({
                 'status': 'updated',
                 'config': config
@@ -355,10 +438,36 @@ Examples:
         help='Default analysis duration in seconds (default: 120)'
     )
     
+    parser.add_argument(
+        '--auto-revert',
+        action='store_true',
+        help='Enable automatic VM snapshot revert after analysis'
+    )
+    
+    parser.add_argument(
+        '--vm-name',
+        help='VirtualBox VM name (required for --auto-revert)'
+    )
+    
+    parser.add_argument(
+        '--snapshot-name',
+        default='Clean State',
+        help='Snapshot name to revert to (default: Clean State)'
+    )
+    
     args = parser.parse_args()
     
     # Update config
     config['default_duration'] = args.duration
+    
+    if args.auto_revert:
+        config['auto_revert_snapshot'] = True
+        if args.vm_name:
+            config['vm_name'] = args.vm_name
+        config['snapshot_name'] = args.snapshot_name
+    
+    # Initialize snapshot manager if configured
+    _initialize_snapshot_manager()
     
     # Check if running on Windows
     if sys.platform != 'win32':
@@ -375,6 +484,18 @@ Examples:
     print(f"Default Duration: {config['default_duration']} seconds")
     print(f"Upload Folder: {UPLOAD_FOLDER.absolute()}")
     print(f"Logs Folder: {LOGS_FOLDER.absolute()}")
+    
+    if config.get('auto_revert_snapshot'):
+        print(f"\n🔄 Automatic Snapshot Revert: ENABLED")
+        print(f"   VM: {config.get('vm_name', 'Not configured')}")
+        print(f"   Snapshot: {config.get('snapshot_name', 'Clean State')}")
+        if vbox_manager:
+            print(f"   Status: ✅ Ready")
+        else:
+            print(f"   Status: ⚠️  Not ready (check VM name and snapshot)")
+    else:
+        print(f"\n🔄 Automatic Snapshot Revert: DISABLED")
+    
     print(f"{'='*60}")
     print(f"\n✅ Server starting...")
     print(f"\n📡 API Endpoints:")

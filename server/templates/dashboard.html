@@ -20,14 +20,6 @@
             </div>
 
             <div class="sidebar-section sidebar-section-muted">
-                <h3>Settings</h3>
-                <div class="sidebar-card">
-                    <p>Adjust thresholds, notifications, or integrations.</p>
-                    <button class="btn btn-secondary" id="openSettingsBtn" type="button">Open Settings</button>
-                </div>
-            </div>
-
-            <div class="sidebar-section sidebar-section-muted">
                 <h3>Model</h3>
                 <div class="sidebar-card">
                     <p><strong>Hybrid Malware Detector</strong></p>
@@ -45,7 +37,19 @@
                     <p>Upload Windows PE executables or supported scripts to run malware detection.</p>
                 </div>
                 <div class="header-actions">
-                    <a class="btn btn-secondary" href="/health" target="_blank" rel="noopener">API Health</a>
+                    <a class="btn btn-secondary" href="/profile" id="profileBtn" title="Open Profile">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </a>
+                    <a class="btn btn-secondary" href="/health" target="_blank" rel="noopener">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        API Health
+                    </a>
                     <a class="btn btn-outline" href="https://github.com/Caty175/poly_trial" target="_blank" rel="noopener">Documentation</a>
                 </div>
             </header>

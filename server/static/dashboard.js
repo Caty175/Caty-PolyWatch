@@ -1,5 +1,15 @@
 const allowedExtensions = ['exe', 'dll', 'sys', 'js', 'vbs', 'ps1', 'py'];
 
+// Helper function to get authorization headers
+const getAuthHeaders = () => {
+    const token = localStorage.getItem('access_token');
+    const headers = {};
+    if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+    }
+    return headers;
+};
+
 const fileInput = document.getElementById('fileInput');
 const dropZone = document.getElementById('dropZone');
 const browseBtn = document.getElementById('browseBtn');
@@ -318,7 +328,9 @@ const renderResultContent = (result) => {
 const fetchModelMetadata = async () => {
     if (!modelTrainingDate) return;
     try {
-        const response = await fetch('/model/info');
+        const response = await fetch('/model/info', {
+            headers: getAuthHeaders()
+        });
         if (!response.ok) return;
         const data = await response.json();
         if (data.training_date) {
@@ -345,8 +357,10 @@ const submitScan = async () => {
     scanBtn.textContent = 'Scanning...';
 
     try {
+        const headers = getAuthHeaders();
         const response = await fetch('/scan/detailed', {
             method: 'POST',
+            headers: headers,
             body: formData,
         });
 

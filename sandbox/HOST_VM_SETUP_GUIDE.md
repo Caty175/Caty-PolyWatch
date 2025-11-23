@@ -151,8 +151,20 @@ New-NetFirewallRule -DisplayName "Sandbox Server" -Direction Inbound -LocalPort 
 Get-NetFirewallRule -DisplayName "Sandbox Server"
 ```
 
-#### **Step 6: Start Sandbox Server**
+#### **Step 6: Create VM Snapshot (Recommended)**
 
+```powershell
+# In VirtualBox (on HOST machine):
+# 1. Start the Windows VM
+# 2. Ensure VM is in clean state (fresh install or reset)
+# 3. Take snapshot: Machine → Take Snapshot
+# 4. Name: "Clean State" (or your preferred name)
+# 5. Description: "Clean Windows state before malware analysis"
+```
+
+#### **Step 7: Start Sandbox Server**
+
+**Option A: Without Automatic Snapshot Revert (Manual)**
 ```powershell
 # In Windows VM:
 cd C:\sandbox
@@ -164,8 +176,36 @@ python windows_sandbox_server.py --port 5000 --host 0.0.0.0
 # ============================================================
 # Host: 0.0.0.0
 # Port: 5000
+# 🔄 Automatic Snapshot Revert: DISABLED
 # ============================================================
 # ✅ Server starting...
+```
+
+**Option B: With Automatic Snapshot Revert (Recommended)**
+```powershell
+# In Windows VM:
+cd C:\sandbox
+python windows_sandbox_server.py --port 5000 --host 0.0.0.0 `
+  --auto-revert --vm-name "Windows_Sandbox" --snapshot-name "Clean State"
+
+# You should see:
+# ============================================================
+# 🪟 Windows Sandbox API Server
+# ============================================================
+# Host: 0.0.0.0
+# Port: 5000
+# 🔄 Automatic Snapshot Revert: ENABLED
+#    VM: Windows_Sandbox
+#    Snapshot: Clean State
+#    Status: ✅ Ready
+# ============================================================
+# ✅ Server starting...
+```
+
+**Note**: Replace `"Windows_Sandbox"` with your actual VM name. You can find it with:
+```powershell
+# On HOST machine (in VirtualBox):
+VBoxManage list vms
 ```
 
 ---
@@ -253,8 +293,8 @@ python ..\Model\predict_lstm_behavioral.py --input features.csv
 # Confidence: 94.23%
 # ============================================================
 
-# 6. In VM: Revert to snapshot (optional)
-# (In VirtualBox: Snapshots → Restore)
+# 6. VM automatically reverts to snapshot (if --auto-revert enabled)
+#    OR manually revert: (In VirtualBox: Snapshots → Restore)
 ```
 
 **Bash (Linux/Mac Host):**
@@ -287,8 +327,8 @@ python ../Model/predict_lstm_behavioral.py \
 # Confidence: 94.23%
 # ============================================================
 
-# 6. In VM: Revert to snapshot (optional)
-# (In VirtualBox: Snapshots → Restore)
+# 6. VM automatically reverts to snapshot (if --auto-revert enabled)
+#    OR manually revert: (In VirtualBox: Snapshots → Restore)
 ```
 
 ---
