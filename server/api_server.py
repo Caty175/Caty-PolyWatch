@@ -81,7 +81,6 @@ MAX_FILE_SIZE = 100 * 1024 * 1024  # 100 MB
 SANDBOX_VM_IP = os.getenv("SANDBOX_VM_IP", "192.168.1.100")  # Change this to your VM's IP address
 SANDBOX_VM_PORT = int(os.getenv("SANDBOX_VM_PORT", "5000"))
 SANDBOX_ANALYSIS_DURATION = int(os.getenv("SANDBOX_ANALYSIS_DURATION", "120"))
-RF_MALWARE_THRESHOLD = 0.60  # 60% threshold to trigger sandbox analysis
 RF_WEIGHT = 0.30  # 30% weight for Random Forest
 LSTM_WEIGHT = 0.70  # 70% weight for LSTM
 # ============================
@@ -756,24 +755,16 @@ async def scan_file(
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"Error making prediction: {str(e)}")
         
-        # Initialize response data with RF results
-        # When LSTM is not triggered, apply RF weight (30%) to final probability
-        # But keep prediction based on RF result itself
-        weighted_malware_prob = RF_WEIGHT * rf_malware_prob
-        weighted_benign_prob = RF_WEIGHT * rf_benign_prob
-        weighted_confidence = max(weighted_malware_prob, weighted_benign_prob)
-        # Prediction is still based on RF result, not weighted result
-        # (since weighted result is only 30% of ensemble, threshold doesn't apply)
-        
         # Initialize lstm_features for adaptive learning (may be set later)
         lstm_features = None
         
+        # Initialize response data with RF results (will be updated after LSTM analysis)
         response_data = {
             "filename": file.filename,
             "prediction": rf_prediction_label,
-            "confidence": weighted_confidence,
-            "malware_probability": weighted_malware_prob,
-            "benign_probability": weighted_benign_prob,
+            "confidence": rf_confidence,
+            "malware_probability": rf_malware_prob,
+            "benign_probability": rf_benign_prob,
             "timestamp": datetime.now().isoformat(),
             "features_extracted": features_array.shape[1],
             "file_size": file_size,
@@ -782,12 +773,12 @@ async def scan_file(
             "sandbox_analysis_performed": False
         }
         
-        # Check if RF malware probability > 60% threshold
-        # If yes, trigger sandbox analysis and LSTM prediction
-        if rf_malware_prob >= RF_MALWARE_THRESHOLD and WindowsSandboxClient is not None and lstm_detector is not None and lstm_metadata is not None:
+        # Always trigger sandbox analysis and LSTM prediction for every file
+        # Both models work together for comprehensive analysis
+        if WindowsSandboxClient is not None and lstm_detector is not None and lstm_metadata is not None:
             try:
-                print(f"🔍 RF malware probability ({rf_malware_prob:.2%}) >= threshold ({RF_MALWARE_THRESHOLD:.2%})")
-                print(f"📤 Triggering sandbox analysis and LSTM prediction...")
+                print(f"📤 Running comprehensive analysis: Static (RF) + Dynamic (Sandbox + LSTM)...")
+                print(f"   RF preliminary result: {rf_prediction_label} ({rf_malware_prob:.2%})")
                 
                 # Create sandbox client
                 sandbox_client = WindowsSandboxClient(SANDBOX_VM_IP, SANDBOX_VM_PORT)
@@ -828,9 +819,9 @@ async def scan_file(
                     print(f"   LSTM (70%): {lstm_malware_prob:.2%}")
                     print(f"   Combined: {combined_malware_prob:.2%}")
                     
-                    # Classify malware type if malware detected
+                    # Classify malware type if malware detected (by either model or combined)
                     malware_classification_result = None
-                    if combined_prediction == "malware" and malware_classifier is not None:
+                    if (combined_prediction == "malware" or lstm_result['prediction'] == "malware" or rf_prediction_label == "malware") and malware_classifier is not None:
                         try:
                             print(f"🔍 Classifying malware type based on behavioral features...")
                             malware_classification_result = malware_classifier.classify_malware_type(lstm_features)
@@ -854,20 +845,25 @@ async def scan_file(
                     })
                 else:
                     print(f"⚠️ Sandbox analysis failed or returned no report")
+                    print(f"⚠️ Falling back to RF-only results")
                     # Continue with RF-only results
                     
             except Exception as e:
                 print(f"⚠️ Error during sandbox/LSTM analysis: {e}")
                 import traceback
                 traceback.print_exc()
+                print(f"⚠️ Falling back to RF-only results")
                 # Continue with RF-only results if sandbox/LSTM fails
         else:
-            if rf_malware_prob < RF_MALWARE_THRESHOLD:
-                print(f"ℹ️ RF malware probability ({rf_malware_prob:.2%}) < threshold ({RF_MALWARE_THRESHOLD:.2%}), skipping sandbox analysis")
-            elif WindowsSandboxClient is None:
-                print(f"⚠️ WindowsSandboxClient not available, skipping sandbox analysis")
+            # Sandbox or LSTM not available - use RF only
+            if WindowsSandboxClient is None:
+                print(f"⚠️ WindowsSandboxClient not available, using RF-only analysis")
             elif lstm_detector is None:
-                print(f"⚠️ LSTM detector not available, skipping sandbox analysis")
+                print(f"⚠️ LSTM detector not available, using RF-only analysis")
+            elif lstm_metadata is None:
+                print(f"⚠️ LSTM metadata not available, using RF-only analysis")
+            else:
+                print(f"⚠️ Sandbox components not fully available, using RF-only analysis")
 
         # Save result to database
         try:
