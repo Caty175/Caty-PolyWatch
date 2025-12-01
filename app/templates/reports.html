@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ff00ff",
+              "background-light": "#f8f5f8",
+              "background-dark": "#230f23",
+            },
+            fontFamily: {
+              display: ["Space Grotesk"],
+            },
+            borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+          },
+        },
+      };
+    </script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style>
+      .glow-border {
+        box-shadow: 0 0 2px theme("colors.primary"), 0 0 5px theme("colors.primary"), 0 0 10px theme("colors.primary");
+      }
+      .glow-text {
+        text-shadow: 0 0 2px theme("colors.primary"), 0 0 5px theme("colors.primary");
+      }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white">
+<div class="flex min-h-screen">
+<aside class="w-64 flex-shrink-0 bg-background-dark/50 dark:bg-background-dark/80 p-4 border-r border-primary/20">
+<div class="flex flex-col h-full">
+<div class="flex items-center gap-2 mb-8">
+<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+</svg>
+<div class="flex flex-col">
+<h1 class="text-lg font-bold glow-text text-white">CyberGuard</h1>
+<p class="text-xs text-primary/70">v1.2.3</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-white/80 hover:bg-primary/20 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-white bg-primary/30 glow-border transition-all" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-white/80 hover:bg-primary/20 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+<span class="font-medium">Logs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-white/80 hover:bg-primary/20 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-white/80 hover:bg-primary/20 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-medium">Help</span>
+</a>
+</nav>
+<div class="mt-auto"></div>
+</div>
+</aside>
+<div class="flex-1 flex flex-col">
+<header class="flex items-center justify-between p-4 border-b border-primary/20 bg-background-dark/50 dark:bg-background-dark/80">
+<div class="flex items-center gap-4">
+<h2 class="text-2xl font-bold text-white">Reports</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-primary/20 text-white/80 hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-primary/20 text-white/80 hover:text-white transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/50 glow-border" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCtBSGxeUtkuHWL1WVRYYh9obeHCLZc4MXL6uyzhVFF7s7kHz67MDFTMwSIdBP3THAH_1rV9YSpSL0NKt1W9hME7VK9B8Ez4L0AIEYzmuQEII09F1XTWgrhJpY2OuZ8dcgLW-ISssMyEHtzv0qbXHRJnNeYNTwJt-Q7vApCZEd_H5xLnONAIFCSWzt1TwR9145fLgdpETblRMDdKIVN_rJLBkICLkMnRNzj9Q8HtjU7H6uUND4AxcuJqny8hhD2chacikDYFgKSHO_V");'></div>
+</div>
+</header>
+<main class="flex-1 p-6">
+<div class="mb-6 flex flex-col sm:flex-row gap-4 justify-between items-center">
+<div class="relative w-full sm:max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary/70">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-lg bg-background-dark/60 dark:bg-background-dark border border-primary/20 focus:border-primary focus:ring-primary/50 focus:ring-1 focus:outline-none placeholder-white/50 text-white transition-all" placeholder="Search reports by filename or result" type="text"/>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-background-dark/60 dark:bg-background-dark border border-primary/20 text-white hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+<span class="font-medium">Export PDF</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white font-medium hover:bg-primary/80 transition-colors glow-border">
+<span class="material-symbols-outlined">csv</span>
+<span>Export CSV</span>
+</button>
+</div>
+</div>
+<div class="overflow-hidden rounded-lg border border-primary/20 bg-background-dark/50 dark:bg-background-dark/80 glow-border">
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left">
+<thead class="bg-background-dark/60 dark:bg-background-dark/90 text-xs text-primary uppercase tracking-wider">
+<tr>
+<th class="px-6 py-3" scope="col">Filename</th>
+<th class="px-6 py-3" scope="col">Result</th>
+<th class="px-6 py-3" scope="col">Date</th>
+<th class="px-6 py-3 text-center" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-primary/20">
+<tr class="hover:bg-primary/10 transition-colors">
+<td class="px-6 py-4 font-medium text-white whitespace-nowrap">malware_sample_1.exe</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400 border border-red-500/50">Malicious</span>
+</td>
+<td class="px-6 py-4 text-white/70">2024-01-15</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-primary hover:underline glow-text" href="#">View</a>
+</td>
+</tr>
+<tr class="hover:bg-primary/10 transition-colors">
+<td class="px-6 py-4 font-medium text-white whitespace-nowrap">suspicious_file.doc</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-500/20 text-yellow-400 border border-yellow-500/50">Suspicious</span>
+</td>
+<td class="px-6 py-4 text-white/70">2024-01-16</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-primary hover:underline glow-text" href="#">View</a>
+</td>
+</tr>
+<tr class="hover:bg-primary/10 transition-colors">
+<td class="px-6 py-4 font-medium text-white whitespace-nowrap">clean_file.pdf</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-500/20 text-green-400 border border-green-500/50">Clean</span>
+</td>
+<td class="px-6 py-4 text-white/70">2024-01-17</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-primary hover:underline glow-text" href="#">View</a>
+</td>
+</tr>
+<tr class="hover:bg-primary/10 transition-colors">
+<td class="px-6 py-4 font-medium text-white whitespace-nowrap">malware_sample_2.exe</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-500/20 text-red-400 border border-red-500/50">Malicious</span>
+</td>
+<td class="px-6 py-4 text-white/70">2024-01-18</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-primary hover:underline glow-text" href="#">View</a>
+</td>
+</tr>
+<tr class="hover:bg-primary/10 transition-colors">
+<td class="px-6 py-4 font-medium text-white whitespace-nowrap">unknown_file.bin</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 text-xs font-semibold rounded-full bg-gray-500/20 text-gray-400 border border-gray-500/50">Unknown</span>
+</td>
+<td class="px-6 py-4 text-white/70">2024-01-19</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-primary hover:underline glow-text" href="#">View</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

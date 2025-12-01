@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CyberLab Malware Analysis</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#ff00ff",
+              "background-light": "#f8f5f8",
+              "background-dark": "#230f23",
+            },
+            fontFamily: {
+              display: ["Space Grotesk"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+<style>
+      .form-select {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ff00ff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-stone-900 dark:text-stone-100">
+<div class="flex h-screen">
+<aside class="w-64 flex-shrink-0 bg-background-light/50 dark:bg-background-dark/50 border-r border-primary/20 dark:border-primary/20 flex flex-col">
+<div class="p-6">
+<h1 class="text-2xl font-bold text-primary">CyberLab</h1>
+<p class="text-sm text-stone-600 dark:text-stone-400">v1.0</p>
+</div>
+<nav class="flex-grow p-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-stone-600 dark:text-stone-300 hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined"> dashboard </span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg bg-primary/20 dark:bg-primary/30 text-primary font-semibold" href="#">
+<span class="material-symbols-outlined"> upload_file </span>
+<span>Upload</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-stone-600 dark:text-stone-300 hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined"> description </span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-stone-600 dark:text-stone-300 hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined"> settings </span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-stone-600 dark:text-stone-300 hover:bg-primary/10 dark:hover:bg-primary/20" href="#">
+<span class="material-symbols-outlined"> help </span>
+<span>Help</span>
+</a>
+</nav>
+</aside>
+<main class="flex-1 p-8 overflow-y-auto">
+<div class="max-w-4xl mx-auto">
+<header class="mb-12">
+<h2 class="text-4xl font-bold text-stone-800 dark:text-white mb-2">
+              Upload File for Analysis
+            </h2>
+<p class="text-stone-500 dark:text-stone-400">
+              Submit a file to our sandbox for behavioral and static analysis.
+            </p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2" for="file-upload">Select File</label>
+<div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-primary/30 dark:border-primary/50 border-dashed rounded-lg bg-background-light/50 dark:bg-background-dark/50">
+<div class="space-y-1 text-center">
+<svg aria-hidden="true" class="mx-auto h-12 w-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 48 48">
+<path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div class="flex text-sm text-stone-600 dark:text-stone-400">
+<label class="relative cursor-pointer bg-transparent rounded-md font-medium text-primary hover:text-primary/80 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary/50" for="file-upload">
+<span>Upload a file</span>
+<input class="sr-only" id="file-upload" name="file-upload" type="file"/>
+</label>
+<p class="pl-1">or drag and drop</p>
+</div>
+<p class="text-xs text-stone-500 dark:text-stone-500">
+                      Any file up to 50MB
+                    </p>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-stone-700 dark:text-stone-300 mb-2" for="analysis-type">Analysis Type</label>
+<select class="form-select block w-full pl-3 pr-10 py-3 text-base border-primary/30 dark:border-primary/50 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-lg bg-background-light dark:bg-background-dark text-stone-900 dark:text-stone-100" id="analysis-type" name="analysis-type">
+<option>Static Analysis</option>
+<option selected="">Dynamic Analysis</option>
+</select>
+</div>
+<button class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary" type="submit">
+                Analyze
+              </button>
+</div>
+<div class="space-y-8">
+<div>
+<h3 class="text-lg font-medium leading-6 text-stone-900 dark:text-white">
+                  Analysis in progress...
+                </h3>
+<p class="mt-1 text-sm text-stone-500 dark:text-stone-400">
+                  This may take a few minutes.
+                </p>
+<div class="mt-4 w-full bg-primary/20 rounded-full h-2.5">
+<div class="bg-primary h-2.5 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-medium leading-6 text-stone-900 dark:text-white mb-4">
+                  Analysis Result
+                </h3>
+<div class="relative rounded-xl overflow-hidden bg-cover bg-center" style='background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAH29UxCQG9DQQljlDPAhTy2iAfv_FM59RmgRHsvTXGz6TAQGiqfKwbajNpRqdNHDTErkLjCDGsDw3RneH97GGbpLYZz2nvn-llAA2nfHWJGupyBzpfO0SL5df_jBUi-tgvdefyo9yhD8dYULUCbGAGDKjmFfoMSKBpkMXdUSRPMyJrXl3hn1NDi4cGRN_NeTLtavZy-x7XkuwrnhHIkW-gozQup9cgudnJExzejzJBzbReQSTsoOoYUco0VqdLthMdjmxjmp5v3MOc");'>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+<div class="relative p-6 flex flex-col justify-end h-48 border border-primary/20 rounded-xl">
+<div class="absolute top-4 right-4 bg-red-500/80 text-white text-xs font-bold px-2 py-1 rounded-full">
+                      MALWARE DETECTED
+                    </div>
+<div class="text-white">
+<p class="text-2xl font-bold">Trojan.Generic.KD.312891</p>
+<p class="text-base font-medium text-stone-300">
+                        Confidence: <span class="font-bold text-primary">95%</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>
